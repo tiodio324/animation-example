@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3.1</title>
+    </head>
+    <body>
+        <canvas id="ctx" width="1450" height="1050"></canvas>
+        <script>
+            let ctx = document.getElementById("ctx").getContext("2d");
+            let car1X=200; let car2X=800;
+
+            function grid() {
+                ctx.beginPath();
+                ctx.strokeStyle="black";
+                ctx.lineWidth=1;
+                for (let x=100; x < 1450; x += 100) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, 1050);                             //Написать grid(); в конце для добавления сетки
+                }
+                for (let y=100; y < 1050; y += 100) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(1450, y);
+                }
+                ctx.stroke();
+                ctx.closePath();
+            }
+
+
+// Background
+            function blueBackground() {
+                ctx.beginPath();
+                ctx.fillStyle="lightBlue";
+                ctx.fillRect(0,0,1450,400);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function greenBackgroundB() {
+                ctx.beginPath();
+                ctx.fillStyle="darkGreen";
+                ctx.fillRect(0, 400,1450,200);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function dimgreyBackground() {
+                ctx.beginPath();
+                ctx.fillStyle="dimgrey";
+                ctx.fillRect(0, 600,1450,350);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function greenBackgroundS() {
+                ctx.beginPath();
+                ctx.fillStyle="darkGreen";
+                ctx.fillRect(0, 950,1450,100);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function road() {
+                ctx.beginPath();
+                ctx.fillStyle="white";
+                for (let c = 0; c < 1450; c += 150) {
+                    ctx.fillRect(c, 790, 100, 20)
+                }
+                ctx.stroke();
+                ctx.closePath();
+            }
+//
+            function greenCircle(x) {
+                ctx.beginPath();
+                ctx.fillStyle="green";
+                ctx.arc(x, 250, 110, 0, Math.PI*2, true);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function treeB(x) {
+                ctx.beginPath();
+                ctx.fillStyle="#f83";
+                ctx.fillRect(x, 250, 30, 300);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function lightGreenCircle() {
+                ctx.beginPath();
+                ctx.fillStyle="lightGreen";
+                ctx.arc(1050, 350, 90, 0, Math.PI*2, true);
+
+                ctx.fill();
+                ctx.closePath();
+            }
+            function smallTree(x) {
+                ctx.beginPath();
+                ctx.strokeStyle="#654321";
+                ctx.lineWidth=8;
+                ctx.moveTo(1050, 560);
+                ctx.lineTo(x,400);
+                ctx.stroke();
+                ctx.closePath();
+            }
+
+            function bigTriangle() {
+                ctx.beginPath();
+                ctx.fillStyle="red";
+                ctx.moveTo(525, 250);
+                ctx.lineTo(700, 25);
+                ctx.lineTo(875, 250);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function houseWall() {
+                ctx.beginPath();
+                ctx.fillStyle="orange";
+                ctx.fillRect(550, 250, 300, 310);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function houseWindowRect() {
+                ctx.beginPath();
+                ctx.fillStyle="white";
+                ctx.fillRect(600, 300, 200, 200);
+                ctx.fill();
+                ctx.closePath();
+            }
+            function houseWindowSmallRect(x, y) {
+                ctx.beginPath();
+                ctx.fillStyle="lightBlue";
+                ctx.fillRect(x, y, 70, 70);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function smallTriangle() {
+                ctx.beginPath();
+                ctx.fillStyle="red";
+                ctx.moveTo(845, 300);
+                ctx.lineTo(925, 350);
+                ctx.lineTo(845, 350);
+                ctx.lineTo(845, 300);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function chimney() {
+                ctx.beginPath();
+                ctx.fillStyle="grey";
+                ctx.fillRect(775, 75, 50, 175);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function doorstep() {
+                ctx.beginPath();
+                ctx.fillStyle="grey";
+                ctx.moveTo(850, 560);
+                ctx.lineTo(925, 560);
+                ctx.lineTo(925, 540);
+                ctx.lineTo(890, 540);
+                ctx.lineTo(890, 520);
+                ctx.lineTo(850, 520);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+//Cars
+            function tire(x, y, r) {
+                ctx.beginPath();
+                ctx.strokeStyle="black";
+                ctx.lineWidth="12";
+                ctx.arc(x, y, r, 0, Math.PI*2, true);
+                ctx.stroke();
+                ctx.closePath();
+            }
+
+            function wheel(x, y, r) {
+                ctx.beginPath();
+                ctx.fillStyle="lightGrey";
+                ctx.arc(x, y, r, 0, Math.PI*2, true);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function carWindow(x, y, w, h) {
+                ctx.beginPath();
+                ctx.fillStyle="lightBlue";
+                ctx.fillRect(x, y, w, h);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function smallCarBody1(x) {
+                ctx.beginPath();
+                ctx.fillStyle="darkBlue";
+                ctx.fillRect(x, 485, 235, 90);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function smallCarBody2(x) {
+                ctx.beginPath();
+                ctx.fillStyle="darkBlue";
+                ctx.fillRect(x, 575, 450, 110);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function bigCarBody1(x) {
+                ctx.beginPath();
+                ctx.fillStyle="purple";
+                ctx.rect(x, 740, 275, 125);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function bigCarBody2(x) {
+                ctx.beginPath();
+                ctx.fillStyle="purple";
+                ctx.rect(x, 645, 175, 100);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function trailer(x) {
+                ctx.beginPath();
+                ctx.fillStyle="#918151";
+                ctx.rect(x, 700, 435, 160);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function exhaust1(x) {
+                ctx.beginPath();
+                ctx.fillStyle="black";
+                ctx.rect(x, 650, 20, 100);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function exhaust2(x) {
+                ctx.beginPath();
+                ctx.fillStyle="black";
+                ctx.rect(x, 640, 35, 20);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function background() {
+            blueBackground();
+            greenBackgroundB();
+            dimgreyBackground();
+            greenBackgroundS();
+            road();
+            treeB(385);
+            greenCircle(400);
+            treeB(1235);
+            greenCircle(1250);
+            smallTree(1050);
+            smallTree(990);
+            smallTree(1110);
+            lightGreenCircle();
+            smallTriangle();
+            chimney();
+            houseWall();
+            doorstep();
+            houseWindowRect();
+            houseWindowSmallRect(615, 315);
+            houseWindowSmallRect(715, 315);
+            houseWindowSmallRect(615, 415);
+            houseWindowSmallRect(715, 415);
+            bigTriangle();
+            }
+
+            function car1() {
+            wheel(car1X, 700, 40);
+            tire(car1X, 700, 40);
+            wheel(car1X + 250, 700, 40);
+            tire(car1X + 250, 700, 40);
+            smallCarBody2(car1X - 75);
+            smallCarBody1(car1X + 10);
+            carWindow(car1X + 30, 500, 80, 80);
+            carWindow(car1X + 140, 500, 80, 80);
+
+            if (car1X > 1600) {
+                car1X=-600;
+                } else {
+                    car1X +=8;
+                }
+            }
+
+
+            function car2() {
+            wheel(car2X - 25, 875, 50);
+            tire(car2X - 25, 875, 50);
+            wheel(car2X + 250, 875, 50);
+            tire(car2X + 250, 875, 50);
+            wheel(car2X + 525, 875, 50);
+            tire(car2X + 525, 875, 50);
+            exhaust1(car2X - 100);
+            exhaust2(car2X - 115);
+            bigCarBody1(car2X - 125);
+            bigCarBody2(car2X - 25);
+            trailer(car2X + 165);
+            carWindow(car2X, 675, 120, 100);
+
+            if (car2X < -600) {
+                car2X=1600;
+                } else {
+                    car2X -=5;
+                }
+            }
+// Функции
+
+            function animation() {
+                ctx.clearRect(0, 0, 1450, 1050);
+                background();
+                car1();
+                car2();
+                // grid();
+                setTimeout(animation,10);
+            }
+
+            requestAnimationFrame(animation);
+        </script>
+    </body>
+</html>
